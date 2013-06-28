@@ -1,0 +1,3 @@
+This program finds the nth prime number based on an input. It uses JavaScript for the calculations.
+
+Calculation speed is optimized by skipping even numbers, and only evaluating numbers up to their square root. 

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+		function findprime() {
+		    var input = document.getElementById('number'),
+		        number = input.value;
+				
+			var primenumber = 2; // prime number to be found
+			var i=1; // number of prime numbers found
+			var count = 2; // current number being analysed
+			var divis = 2; // divisor of current number
+			var remain = 0; // remained of current number / divisor
+			var numstyle = 'th'; // 'st' 'nd' 'rd' 'th' styling
+								
+		    if (number / number == 1) { // check if input is a number
+		    	if (number == 1) { // default value for 1st prime number
+		    	primenumber = 2;
+				} else {
+					while (i < number) { // while nth wanted is greater than prime numbers found
+						count++;
+						i++;
+						for (divis=2; divis<=(Math.sqrt(count)); divis++) {	// optimize by only checking up to square root
+							if (count%2==0) {count++;} // optimize by skipping evens
+//							document.write("<br>" + "i: " + i + "<br>");
+//							document.write("count: " + count + "<br>");								
+//							document.write("divis: " + divis + "<br>");	
+//							document.write("%: " + count%divis + "<br>");	
+							if (count%divis == 0) {
+							count ++;
+							divis=2;
+							}
+						}
+					}
+				primenumber = count;
+				}
+				
+				var stylecheck = number%10; // style for 'st' 'nd' 'rd' 'th'
+				var stylecheck2 = number%100;
+				if (stylecheck == 1 && stylecheck2 != 11) {
+				numstyle = 'st'; }
+				if (stylecheck == 2 && stylecheck2 != 12) {
+				numstyle = 'nd'; }
+				if (stylecheck == 3 && stylecheck2 != 13) {
+				numstyle = 'rd'; }
+				
+				document.getElementById('output').innerHTML =('The ' + number + numstyle + ' prime number is ' + primenumber + '.');				
+		    } else {
+		        alert('Please enter a number!'); // alert if a number is not entered
+		        input.focus();
+		    }
+		}
+</script>
+
+<style type="text/css">
+  * {
+	font-family: "Arial Black", Gadget, sans-serif;	
+	color: #222;
+	}
+	
+#content {
+	font-size: 17px;
+	text-align: center;	
+	}
+	
+h1 {
+
+	text-align: center;
+	padding-top: 50px;
+	font-size: 70px;
+	text-transform: uppercase;
+	}
+
+h2 {
+	text-align: center;
+	padding-top: 10px;
+	font-size: 30px;
+	}	
+	
+</style>
+</head>
+
+<body>
+
+	<h1>Prime Numbers</h1>
+	<div id = "content">
+		<p>The 4th prime number is 7, and the 6th prime number is 13.</p>
+		<p>Which prime number do you want to find?</p>
+		<input size="10" name="number" id="number" type="text">
+		<button id="find" onclick="findprime();" href="javascript:void(0);" title="findprime">GO</button>
+		<h2 id='output'></h2> 
+	</div>
+	
+</body>
+</html>
